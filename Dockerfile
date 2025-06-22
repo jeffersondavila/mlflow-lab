@@ -1,8 +1,11 @@
 # Utiliza como base la imagen oficial de Jupyter que ya incluye Apache Spark, JupyterLab y otras herramientas de ciencia de datos.
 FROM jupyter/all-spark-notebook
 
+# Copia el archivo de requisitos
+COPY requirements.txt .
+
 # Instala MLflow dentro del contenedor para permitir el tracking de experimentos de Machine Learning.
-RUN pip install mlflow pyspark
+RUN pip install -r requirements.txt
 
 # Copia el script de inicio personalizado (start.sh) desde tu máquina local al contenedor,
 # colocándolo en el directorio del usuario 'jovyan' (el usuario por defecto en esta imagen base).
