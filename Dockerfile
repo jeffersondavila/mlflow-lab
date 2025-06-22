@@ -2,7 +2,7 @@
 FROM jupyter/all-spark-notebook
 
 # Instala MLflow dentro del contenedor para permitir el tracking de experimentos de Machine Learning.
-RUN pip install mlflow
+RUN pip install mlflow pyspark
 
 # Copia el script de inicio personalizado (start.sh) desde tu máquina local al contenedor,
 # colocándolo en el directorio del usuario 'jovyan' (el usuario por defecto en esta imagen base).
