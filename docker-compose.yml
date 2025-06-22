@@ -1,12 +1,15 @@
-version: '3.8'
+version: '3.8'  # Versión del esquema de Docker Compose. La 3.8 es compatible con Docker 19.03+.
 
 services:
-  spark-jupyter:
-    build: .
-    container_name: spark-jupyter
+  spark-jupyter:  # Nombre del servicio (contenedor) que vamos a levantar.
+    build: .  # Indica que la imagen se debe construir usando el Dockerfile ubicado en el directorio actual.
+    container_name: spark-jupyter  # Nombre personalizado para el contenedor Docker.
+
     ports:
-      - "8888:8888"
-      - "4040:4040"
-      - "5000:5000"
+      - "8888:8888"  # Expone el puerto de JupyterLab para poder acceder desde el navegador (http://localhost:8888).
+      - "4040:4040"  # Expone el puerto para el UI de Apache Spark (http://localhost:4040).
+      - "5000:5000"  # Expone el puerto de MLflow para acceder al tracking server (http://localhost:5000).
+
     volumes:
-      - ./notebooks:/home/jovyan/work
+      - ./notebooks:/home/jovyan/work  # Monta el directorio local 'notebooks' en el contenedor,
+                                       # permitiendo guardar y persistir archivos de Jupyter notebooks.
