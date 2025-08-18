@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
+from pathlib import Path
 
 warnings.filterwarnings("ignore")
 
@@ -114,9 +115,13 @@ class FeatureExtraction:
 
 # TODO: ejecutar run en clase de orquestación
 if __name__ == "__main__":
-    feature_extractor_processor = FeatureExtraction()
-    data_path_processed = "tracking/data/data_processed"
+    from pathlib import Path
+    BASE_DIR = Path(__file__).resolve().parents[1]  # .../workspace
+    data_path_processed = str(BASE_DIR / "tracking" / "data" / "data_processed")
     data_version = 1
+
+    feature_extractor_processor = FeatureExtraction()
     feature_extractor_processor.run(data_path_processed, data_version)
+
 
 
